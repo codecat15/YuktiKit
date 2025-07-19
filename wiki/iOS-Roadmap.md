@@ -159,17 +159,17 @@ Before diving into the questions below, check out this blog post that outlines t
 
 ### Practical UI Layout Challenges
 
-**Think of your strategy for the following**
+_Think of your strategy for the following think of edge cases, code management, testability_
 
-- Instagram Feed: Infinite scroll, image grid, profile header
+- **Instagram Feed:** Infinite scroll, image grid, profile header
 
-- WhatsApp Settings Screen: Static grouped table, profile header, actions
+- **WhatsApp Settings Screen:** Static grouped table, profile header, actions
 
-- App Store Home: CollectionView with nested horizontal scrolls
+- **App Store Home:** CollectionView with nested horizontal scrolls
 
-- Zomato Home: Search bar, location selector, restaurant grid
+- **Zomato Home:** Search bar, location selector, restaurant grid
 
-- Google Maps 'From' and 'To': Overlay views, autocomplete input, dynamic resizing
+- **Google Maps 'From' and 'To':** Overlay views, autocomplete input, dynamic resizing
 
 ---
 
@@ -240,20 +240,30 @@ Before diving into the questions below, check out this blog post that outlines t
 ### Questions
 
 - Why choose MVVM over MVC?
+
 - When is VIPER justified?
+
 - Compare Clean Architecture with MVVM
+
 - Why is TCA overengineered?
+
 - When would you choose one architecture over the other?
-- Is every architecture scalable? Justify your answer with an example if yes why if no then what are the roadblocks that makes an architecture non-scalable.
+
+- Is every architecture scalable?
+  Justify your answer with an example if yes why if no then what are the roadblocks that makes an architecture non-scalable.
 
 ---
 
 ## 🧱 7. Design Patterns in iOS
 
 - [Factory](https://youtu.be/faeoSJhN-Ko): Object creation
+
 - Singleton Pattern: Shared managers (e.g., LocationManager)
+
 - Repository: Decoupling data source
+
 - Feature Flags: Toggle logic via remote config
+
 - Decorator, Adapter, Strategy
 
 ---
@@ -261,8 +271,11 @@ Before diving into the questions below, check out this blog post that outlines t
 ## 🧭 8. Code Principles
 
 - SOLID Principles (Single Responsibility, Open/Closed, etc.)
+
 - DRY (Don't Repeat Yourself)
+
 - KISS (Keep It Simple, Silly)
+
 - YAGNI (You Aren't Gonna Need It)
 
   🎥 [Code Principles Guide](https://youtube.com/playlist?list=PLb5R4QC2DtFuC7WzUd5bJP3tdVsUcI8E8&feature=shared)
@@ -274,12 +287,15 @@ Before diving into the questions below, check out this blog post that outlines t
 ### Types
 
 - Unit tests: `XCTest`, ViewModel mocking
+
 - Integration tests
+
 - UI testing: `XCTest UI`, snapshot tests
 
 ### Tools
 
 - XCTest, Quick/Nimble
+
 - Cuckoo, Mockingbird
 
 ## Questions
@@ -302,7 +318,9 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Scenarios
 
 - Leading a deadline-bound feature
+
 - Resolving production performance issues
+
 - Refactoring legacy codebase to adopt an architecture
 
 ---
@@ -312,9 +330,13 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Sample Questions
 
 - **Offline Notes App:** CoreData/SQLite, sync strategy, background tasks
+
 - **Real-Time Chat App:** Websockets, state management, delivery guarantees
+
 - **Push Notification Architecture:** FCM/APNs, custom payload handling, deep linking
+
 - **Pagination & Lazy Loading:** TableView/CollectionView optimization
+
 - **Modular App Structure:** Feature modules, dynamic framework loading
 
 ---
@@ -322,11 +344,17 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ## 🔐 12. iOS Security
 
 - **HTTP vs HTTPS:** TLS, MITM attacks
+
 - **Keychain Storage:** Tokens, sensitive info
+
 - **Biometric Auth:** FaceID/TouchID usage
+
 - Secure Enclave
+
 - SSL Pinning
+
 - Jailbreak detection via code
+
 - Static/dynamic analysis tools for penetration testing
 
 🎥 [Security Guidelines in iOS (Hindi)](https://youtu.be/RkYoNBqWBkk)
@@ -338,11 +366,13 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Build Automation
 
 - Xcode Cloud, GitHub Actions, Bitrise, AzureDevOps
+
 - Fastlane for signing/testing/builds
 
 ### Quality Gates
 
 - Linting, test coverage
+
 - Crashlytics, Sentry integration
 
 ---
@@ -354,9 +384,13 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 > Note: Learn how to setup each database as well
 
 - **CoreData:** For structured and ORM (Object relation)
+
 - **SQLite:** Manual schema control (nobody uses this much as it's too much work but it's good to know why nobody uses this)
+
 - **Firebase:** Realtime sync, offline support (this is paid)
+
 - **SwiftData:** Modern, Swift-native ORM built on CoreData with declarative syntax
+
 - **UserDefaults:** For settings and lightweight flags
 
   🎥 [Core Data Playlist](https://youtube.com/playlist?list=PLb5R4QC2DtFsJwFLf9119aefRnEMDp4aB&feature=shared)
@@ -376,12 +410,19 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Concepts
 
 - [Threading](https://youtu.be/OKfv_0FvEf0)
+
 - Main vs Background thread
+
 - Queues, Serial vs Concurrent queues
+
 - `sync` vs `async`
+
 - Race conditions and deadlocks
+
 - Global Queue vs QoS
+
 - DispatchGroup and TaskGroup
+
 - Thread sanitizer
 
 🎥 [Threading Guide](https://youtube.com/playlist?list=PLb5R4QC2DtFuSE3wpJAqvFRbal5-7sAwr&feature=shared)
@@ -389,13 +430,21 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Questions
 
 - What’s the difference between `@MainActor` and `DispatchQueue.main.async`?
+
 - What is structured concurrency and how is it different from GCD?
+
 - [How does Actor prevent race conditions?](https://youtu.be/USz17wtIKG8)
+
 - Explain thread safety while updating a shared array in GCD?
+
 - How do you ensure UI updates are thread-safe?
+
 - [What is a deadlock explain with an example?](https://youtu.be/mToZ03k7oEI)
+
 - What’s the difference between a thread and a queue?
+
 - When would you prefer OperationQueue over GCD?
+
 - Explain thread safety while updating a shared array in GCD?
 
 ---
@@ -405,8 +454,11 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Navigation, Forms, Layouts
 
 - NavigationStack, NavigationLink, Sheet
+
 - [List](https://youtu.be/OLEijRSANpw), LazyVStack
+
 - Form, Picker, DatePicker
+
 - ViewBuilder, GeometryReader, PreferenceKey
 
 🎥 [SwiftUI Basics](https://youtube.com/playlist?list=PLb5R4QC2DtFuRFJ35uPMhpY90s0VMNR-i&feature=shared)
@@ -418,9 +470,13 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 ### Combine + Swift Concurrency
 
 - State, [@Binding](https://youtu.be/g3VOWHYTHzU), [@ObservedObject](https://youtu.be/GG0z7LpNyq4), [@EnvironmentObject](https://youtu.be/oJg5CJSXs6w)
+
 - async/await with SwiftUI and Task
+
 - @Sendable, @MainActor, TaskGroup
+
 - Isolated state, thread-safe classes
+
 - Background processing using .subscribe(on:) and .receive(on:)
 
 🎥 [CoreData ToDo App](https://youtube.com/playlist?list=PLb5R4QC2DtFs8alYSS_cqNjLTDHucbuFl&feature=shared)
