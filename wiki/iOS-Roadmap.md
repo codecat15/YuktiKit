@@ -389,7 +389,7 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 
 - **Firebase:** Realtime sync, offline support (this is paid)
 
-- **SwiftData:** Modern, Swift-native ORM built on CoreData with declarative syntax
+- **SwiftData:** Modern, built on CoreData with declarative syntax
 
 - **UserDefaults:** For settings and lightweight flags
 
