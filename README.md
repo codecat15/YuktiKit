@@ -14,12 +14,12 @@ This isn’t a package, SDK, or dependency **YuktiKit is a knowledge kit, a deve
 
 ### 📚 What's Inside
 
-This repo’s [Wiki](https://github.com/yourusername/YuktiKit/wiki) is the heart of YuktiKit, currently containing:
+This repo’s [Wiki](https://github.com/codecat15/YuktiKit/tree/main/wiki) is the heart of YuktiKit, currently containing:
 
-- **[iOS Roadmap](https://github.com/yourusername/YuktiKit/wiki/iOS-RoadMap)**  
+- **[iOS Roadmap](https://github.com/codecat15/YuktiKit/blob/main/wiki/iOS-Roadmap.md)**  
   A structured path for iOS developers to grow from basics to advanced topics and help them crack interviews.
 
-- **[Developer Quality Guide](https://github.com/yourusername/YuktiKit/wiki/Developer_quality_guide)**  
+- **[Developer Quality Guide](https://github.com/codecat15/YuktiKit/blob/main/wiki/Developer-Quality-Guide.md)**  
   What to do. What _not_ to do. Code hygiene, architectural reasoning, and battle-tested principles for writing clean, maintainable Swift.
 
 ## More to come:
