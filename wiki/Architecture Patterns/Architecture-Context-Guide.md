@@ -11,6 +11,39 @@ The folder structure however is pure subjective to your situation and applicatio
 
 ---
 
+# 📚 iOS Architecture Index
+
+### 🚨 Code Hygiene
+
+- [SwiftLint & Discipline](#🚨-code-smell-alert)
+
+---
+
+### 📁 Project Foundations
+
+- [Sample Folder Structure](#📁-sample-folder-structure)
+- [Folder Purpose Overview](#📁-folder-purpose-overview)
+
+---
+
+### 📦 Core Concepts
+
+- [Data Models (DTO, Entity, Domain, UI)](#1-data-models-separating-dto-domain-entity-and-ui-contracts)
+- [Orchestration Layer](#🧠-2-orchestration-layer)
+- [Repository Layer](#📦-3-repository-layer-data-access-boundaries)
+- [Validation Layer](#✅-4-validation-layer)
+
+---
+
+### 🧰 Practical Engineering
+
+- [Swift Package Manager (SPM) Best Practices](#📦-5-swift-package-manager-spm)
+- [Utilities](#🧰-6-utilities)
+
+---
+
+---
+
 ## 🚨 Code Smell Alert
 
 If your project has [SwiftLint](https://github.com/realm/SwiftLint) and you've started disabling rules left and right just to make the linter shut up **congratulations, you're not enforcing code quality, you're actively bypassing it**.
@@ -278,7 +311,7 @@ extension User {
 
 ---
 
-## 🧠 2. Orchestration Layer – ViewModel / Interactor
+## 🧠 2. Orchestration Layer
 
 ### 🎯 Purpose
 
@@ -572,7 +605,7 @@ final class ProductRepositoryImpl: ProductRepository {
 
 ---
 
-## ✅ 4. Validation Layer – Centralized, Reusable, and Isolated
+## ✅ 4. Validation Layer
 
 **📌 Purpose**
 
@@ -812,7 +845,7 @@ Alright, let’s dive into **Section 4: SPM Best Practices** — and we’re goi
 
 ---
 
-## 📦 5. Swift Package Manager (SPM) – Usage Guidelines & Best Practices
+## 📦 5. Swift Package Manager (SPM)
 
 ### 🎯 Why This Matters
 
@@ -950,7 +983,7 @@ final class CheckoutViewModel {
 
 ---
 
-## 🧰 6. Utilities – The Good, the Bad, and the Maintainable
+## 🧰 6. Utilities
 
 ### 🎯 What Are Utilities?
 
