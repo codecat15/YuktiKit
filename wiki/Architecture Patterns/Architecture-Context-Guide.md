@@ -1,4 +1,4 @@
-### 📁 iOS Architecture Boundaries & Folder Structure
+# 📁 iOS Architecture Boundaries & Folder Structure
 
 This documentation contains architecture boundaries and sample folder structure. The architecture boundaries can be used with any architecture whatsoever the core principals are always going to remain the same.
 
@@ -8,6 +8,26 @@ The folder structure however is pure subjective to your situation and applicatio
 
 - If this is the right place for a `DomainContract` or a `FieldValidation`?
 - Does it make maintainence easy?
+
+---
+
+## 🚨 Code Smell Alert
+
+If your project has [SwiftLint](https://github.com/realm/SwiftLint) and you've started disabling rules left and right just to make the linter shut up **congratulations, you're not enforcing code quality, you're actively bypassing it**.
+
+> You're not "cleaning up warnings" you're giving dirty code a VIP pass into production.
+
+You're not just a developer anymore. You're now:
+
+- The guardian of legacy bugs
+- The enabler of inconsistency
+- The accidental villain in your own app's architecture story
+
+**SwiftLint exists to enforce discipline, not to be silenced when it's inconvenient.** If a rule needs disabling, then perhaps you need to take a pause and think of why this warning comes and how you can make it right.
+
+---
+
+## 📁 Sample Folder structure
 
 ```
 App/
@@ -927,5 +947,155 @@ final class CheckoutViewModel {
 
 > **Treat third-party code like radiation.**
 > It’s powerful, but you keep it in lead casing and use it only when necessary.
+
+---
+
+## 🧰 6. Utilities – The Good, the Bad, and the Maintainable
+
+### 🎯 What Are Utilities?
+
+Utilities are reusable, pure functions, non-domain-specific logic or helpers that make your codebase DRY and cleaner. These can include:
+
+- **Formatting helpers** (dates, currency, strings, averages)
+- **Network utilities**
+- **File managers**
+- **App-wide operations** (e.g., retry logic, debounce, throttling)
+
+> Think of utilities as **stateless functions** or **helpers** that serve _multiple features_ without knowing about _any_.
+
+---
+
+## 🧱 Suggested Folder Structure
+
+```
+Core/
+└── Utilities/
+    ├── Network/
+    │   └── HTTPHelper.swift
+    ├── Formatters/
+    │   ├── DateFormatterFactory.swift
+    │   └── CurrencyFormatter.swift
+    ├── Files/
+    │   └── FileCleanupUtility.swift
+    └── Math/
+        └── RoundingUtility.swift
+```
+
+---
+
+## ✅ Good Practices
+
+### 🔁 1. Use When Reused
+
+**Rule of thumb:** If you're copy-pasting something **more than twice**, turn it into a utility.
+
+```swift
+struct RoundingUtility {
+    static func roundToTwoDecimals(_ value: Double) -> Double {
+        return Double(round(100 * value) / 100)
+    }
+}
+```
+
+### 🧼 2. Keep It Pure
+
+Utilities should be:
+
+- Stateless
+- Side-effect free
+- Easily testable
+
+Avoid injecting services or using app state inside utility functions.
+
+---
+
+### ✅ Good Example: DateFormatter Factory
+
+```swift
+struct DateFormatterFactory {
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
+}
+```
+
+Use it across the app via:
+
+```swift
+let date = DateFormatterFactory.iso8601.date(from: dateString)
+```
+
+✅ Reusable
+
+✅ Centralized
+
+✅ No coupling to UI, domain, or data layers
+
+---
+
+## ❌ Bad Practices
+
+### 1. Utility Extensions with No Boundaries
+
+```swift
+extension String {
+    var isOnlyLetters: Bool {
+        return self.range(of: "^[A-Za-z]+$", options: .regularExpression) != nil
+    }
+}
+```
+
+> Looks cute. **Until** someone uses it to validate usernames, product codes, or passwords and now you're in maintenance hell with **one regex to rule them all**.
+
+### 🚫 Why This Is Bad
+
+- No context of where it should be used
+- Easy to misuse or overreach
+- **Global scope leaks everywhere**
+- Not testable in isolation
+- You can’t tell where it was intended to live or why
+
+#### 🧠 Better Alternative:
+
+```swift
+struct ValidationUtility {
+    static func containsOnlyLetters(_ input: String) -> Bool {
+        return input.range(of: "^[A-Za-z]+$", options: .regularExpression) != nil
+    }
+}
+```
+
+Now you can **mock, test, isolate**, and even evolve that function without killing the whole app.
+
+---
+
+### 2. Massive `Utils.swift` Files
+
+```swift
+// Utils.swift
+func showToast(_ message: String) { ... }
+func convertToJSON(_ obj: Any) -> String? { ... }
+func roundUp(_ value: Double) -> Int { ... }
+```
+
+> Congratulations, you’ve just created a **dumping ground** OR **GOD Utilites.swift**.
+
+- Impossible to test
+- No discoverability
+- Can't be auto-injected or modularized
+
+---
+
+## 🧠 Key Principles
+
+| ✅ Do                                | ❌ Don’t                                    |
+| ------------------------------------ | ------------------------------------------- |
+| Group utilities by category          | Dump everything into one mega-file          |
+| Keep them pure and side-effect free  | Read app state or UI from inside a utility  |
+| Use structs or static helpers        | Abuse global extensions on `String`, `Date` |
+| Test utilities in isolation          | Hide logic in hard-to-reach places          |
+| Avoid references to UIKit or SwiftUI | Never put toasts, alerts, or views in utils |
 
 ---
