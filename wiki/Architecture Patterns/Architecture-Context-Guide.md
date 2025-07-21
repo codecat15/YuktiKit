@@ -15,30 +15,30 @@ The folder structure however is pure subjective to your situation and applicatio
 
 ### 🚨 Code Hygiene
 
-- [SwiftLint & Discipline](#🚨-code-smell-alert)
+- [SwiftLint & Discipline](#-code-smell-alert)
 
 ---
 
 ### 📁 Project Foundations
 
-- [Sample Folder Structure](#📁-sample-folder-structure)
-- [Folder Purpose Overview](#📁-folder-purpose-overview)
+- [Sample Folder Structure](#-sample-folder-structure)
+- [Folder Purpose Overview](#-folder-purpose-overview)
 
 ---
 
 ### 📦 Core Concepts
 
 - [Data Models (DTO, Entity, Domain, UI)](#1-data-models-separating-dto-domain-entity-and-ui-contracts)
-- [Orchestration Layer](#🧠-2-orchestration-layer)
-- [Repository Layer](#📦-3-repository-layer-data-access-boundaries)
-- [Validation Layer](#✅-4-validation-layer)
+- [Orchestration Layer](#-2-orchestration-layer)
+- [Repository Layer](#-3-repository-layer-data-access-boundaries)
+- [Validation Layer](#-4-validation-layer)
 
 ---
 
 ### 🧰 Practical Engineering
 
-- [Swift Package Manager (SPM) Best Practices](#📦-5-swift-package-manager-spm)
-- [Utilities](#🧰-6-utilities)
+- [Swift Package Manager (SPM) Best Practices](#-5-swift-package-manager-spm)
+- [Utilities](#-6-utilities)
 
 ---
 
