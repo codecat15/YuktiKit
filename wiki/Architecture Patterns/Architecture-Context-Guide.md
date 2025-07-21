@@ -32,13 +32,13 @@ The folder structure however is pure subjective to your situation and applicatio
 - [Orchestration Layer](#-2-orchestration-layer)
 - [Repository Layer](#-3-repository-layer-data-access-boundaries)
 - [Validation Layer](#-4-validation-layer)
+- [Utilities](#-6-utilities)
 
 ---
 
-### 🧰 Practical Engineering
+### 🧰 Third party dependencies
 
 - [Swift Package Manager (SPM) Best Practices](#-5-swift-package-manager-spm)
-- [Utilities](#-6-utilities)
 
 ---
 
