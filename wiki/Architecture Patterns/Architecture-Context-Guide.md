@@ -1217,7 +1217,7 @@ final class BiometricService: BiometricAuthentication {
 
 ### Inject into the Orchestration Layer (e.g., ViewModel)
 
-```
+```swift
 final class SecureActionViewModel {
     private let biometricService: BiometricAuthentication
 
