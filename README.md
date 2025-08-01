@@ -1,6 +1,6 @@
 # YuktiKit
 
-_Knwoledge kit for iOS developers_
+_Knowledge kit for iOS developers_
 
 Welcome to **YuktiKit** A living, evolving wiki dedicated to iOS development best practices, architectural clarity, and engineering discipline.
 

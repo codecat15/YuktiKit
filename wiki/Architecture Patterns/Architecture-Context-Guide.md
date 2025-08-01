@@ -33,6 +33,7 @@ The folder structure however is pure subjective to your situation and applicatio
 - [Repository Layer](#-3-repository-layer-data-access-boundaries)
 - [Validation Layer](#-4-validation-layer)
 - [Utilities](#-6-utilities)
+- [Device Capabilities](#-7-device-capabilities)
 
 ---
 
@@ -62,19 +63,29 @@ You're not just a developer anymore. You're now:
 
 ## 📁 Sample Folder structure
 
+Different architectures may structure things differently, but when it comes to maintainability, the end goal should always be cohesion. Keeping related components close together improves navigability and reduces friction when scaling or debugging.
+
+The folder structure below is subjective, but it offers a solid starting point for building a well-organized iOS codebase.
+
 ```
 App/
 ├── Core/
 │   ├── Constants/
-│   ├── DeviceServices/
 │   ├── Extensions/
 │   ├── Models/
 │   │   ├── Domain/
-│   │   └── DTO/
-│   │   └── Entity/
+│   │   ├── DTO/
+│   │   ├── Entity/
 │   │   └── Client/
 │   ├── Validation/
 │   └── BusinessLogic/
+│
+├── Device/
+│   ├── Accelerometer/
+│   ├── Biometric/
+│   ├── Camera/
+│   ├── Location/
+│   └── Wallet/
 │
 ├── Data/
 │   ├── API/
@@ -104,7 +115,6 @@ App/
 | **Folder**                        | **Purpose**                                                                 |
 | --------------------------------- | --------------------------------------------------------------------------- |
 | `Core/Constants/`                 | App-level constants (e.g., API URLs, keys, hardcoded values, flags)         |
-| `Core/DeviceServices/`            | Isolated access to device capabilities like accelerometer, wallet, etc.     |
 | `Core/Extensions/`                | Common extensions on native types like `String`, `Date`, `UIView`, etc.     |
 | `Core/Models/Domain/`             | Repository app models clean representations, not tied to API/UI             |
 | `Core/Models/DTO/`                | Codable structs that represent external API contracts (data transfer)       |
@@ -112,6 +122,7 @@ App/
 | `Core/Models/Client/`             | Represents models that are used in the UI                                   |
 | `Core/Validation/`                | Centralized validation logic, rules, and reusable error types               |
 | `Core/BusinessLogic/`             | Business rules (e.g., discount engine, calculations), reusable and testable |
+| `Device`                          | Isolated access to device capabilities like accelerometer, wallet, etc.     |
 | `Data/API/`                       | Network layer (clients, endpoints, interceptors)                            |
 | `Data/Persistence/`               | Local storage: CoreData, SQLite, SwiftData                                  |
 | `Data/Repository/`                | Abstract data sources (each vertical owns its own repo)                     |
@@ -1132,3 +1143,119 @@ func roundUp(_ value: Double) -> Int { ... }
 | Avoid references to UIKit or SwiftUI | Never put toasts, alerts, or views in utils |
 
 ---
+
+## 🧰 7. Device Capabilities
+
+The `Device/` layer is designed to **abstract and isolate all platform-specific, hardware-level capabilities** like:
+
+- Face ID / Touch ID (Biometrics)
+- Motion Sensors (Accelerometer, Gyroscope)
+- Camera Access
+- Location Services
+- Apple Wallet
+
+> These services directly depend on iOS frameworks like `LocalAuthentication`, `CoreMotion`, `AVFoundation`, etc., and should be wrapped behind protocols to keep them testable and replaceable.
+
+This layer enforces **separation of concerns**, improves **testability**, and avoids **tight coupling** with UIKit or SwiftUI.
+
+### 📁 Folder Structure
+
+```
+App/
+└── Device/
+├── Accelerometer/
+├── Biometric/
+├── Camera/
+├── Location/
+└── Wallet/
+```
+
+> Each subfolder contains:
+>
+> - A `Protocol` to define the contract (e.g., `BiometricAuthentication`)
+> - A `Service` class that implements the protocol using platform APIs
+
+## ✅ Example – Biometric Authentication (Face ID / Touch ID)
+
+### 1️⃣ Define a Protocol (Interface)
+
+```swift
+protocol BiometricAuthentication {
+    func authenticate(reason: String, completion: @escaping (Result<Bool, Error>) -> Void)
+}
+```
+
+> This protocol defines the `what` without exposing the `how`. Your app layers will use this interface, not `LAContext` directly.
+
+### Concrete Implementation
+
+```swift
+
+import LocalAuthentication
+
+final class BiometricService: BiometricAuthentication {
+    func authenticate(reason: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let context = LAContext()
+        var error: NSError?
+
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            completion(.failure(error ?? NSError(domain: "biometric.unavailable", code: -1)))
+            return
+        }
+
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authError in
+            if let authError = authError {
+                completion(.failure(authError))
+            } else {
+                completion(.success(success))
+            }
+        }
+    }
+}
+
+```
+
+### Inject into the Orchestration Layer (e.g., ViewModel)
+
+```
+final class SecureActionViewModel {
+    private let biometricService: BiometricAuthentication
+
+    init(biometricService: BiometricAuthenticating) {
+        self.biometricService = biometricService
+    }
+
+    func unlock() {
+        biometricService.authenticate(reason: "Unlock secure action") { result in
+            switch result {
+            case .success(let success):
+                if success {
+                    // Proceed with unlocking
+                }
+            case .failure(let error):
+                // Handle failure (e.g., show error to user)
+                print("Authentication failed: \(error.localizedDescription)")
+            }
+        }
+    }
+}
+```
+
+## The ViewModel doesn’t know about LAContext, iOS frameworks, or the platform. It only knows about the abstraction.
+
+## ❌ Anti-Pattern – Coupling Platform APIs Directly in ViewModel
+
+```swift
+// ❌ Don't do this
+final class AuthViewModel {
+
+func authWithFaceID() {
+let context = LAContext()
+context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Login") { success, error in
+// This is now a pain to test and tightly coupled to UIKit
+        }
+    }
+}
+```
+
+> This breaks abstraction, increases test complexity, and leaks platform code into orchestration logic.
