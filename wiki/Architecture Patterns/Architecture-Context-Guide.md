@@ -852,10 +852,6 @@ enum AmountValidator {
 
 ---
 
-Alright, let’s dive into **Section 4: SPM Best Practices** — and we’re going to keep this **realistic**, **pragmatic**, and **opinionated**, just the way you like it.
-
----
-
 ## 📦 5. Swift Package Manager (SPM)
 
 ### 🎯 Why This Matters
