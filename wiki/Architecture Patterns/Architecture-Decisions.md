@@ -1,4 +1,4 @@
-# 📁 iOS Architecture Boundaries & Folder Structure
+# 📁 iOS Architecture Decisions/Boundaries & Folder Structure
 
 This documentation contains architecture boundaries and sample folder structure. The architecture boundaries can be used with any architecture whatsoever the core principals are always going to remain the same.
 
