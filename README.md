@@ -22,7 +22,7 @@ This repo’s [Wiki](https://github.com/codecat15/YuktiKit/tree/main/wiki) is th
 - **[Developer Quality Guide](https://github.com/codecat15/YuktiKit/blob/main/wiki/Developer-Quality-Guide.md)**
   What to do. What _not_ to do. Code hygiene, architectural reasoning, and battle-tested principles for writing clean, maintainable Swift.
 
-- **[Architecture Decisions](https://github.com/codecat15/YuktiKit/blob/main/wiki/Architecture%20Patterns/Architecture-Context-Guide.md)**
+- **[Architecture Decisions](https://github.com/codecat15/YuktiKit/blob/main/wiki/Architecture%20Patterns/Architecture-Decisions.md)**
   A living document that captures the guiding principles, boundaries, and reasoning behind architectural decisions. Use this as your **north star** and make changes depending on your project and usecase.
 
 ## More to come:
