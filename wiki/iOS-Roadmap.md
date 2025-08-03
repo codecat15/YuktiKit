@@ -445,8 +445,6 @@ Read about the [star format here](https://codecat15.medium.com/mastering-ios-app
 
 - When would you prefer OperationQueue over GCD?
 
-- Explain thread safety while updating a shared array in GCD?
-
 ---
 
 ## 🧰 16. SwiftUI
