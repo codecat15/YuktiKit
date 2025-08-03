@@ -16,7 +16,7 @@ This isn’t a package, SDK, or dependency **YuktiKit is a knowledge kit, a deve
 
 This repo’s [Wiki](https://github.com/codecat15/YuktiKit/tree/main/wiki) is the heart of YuktiKit, currently containing:
 
-- **[iOS Roadmap](https://github.com/codecat15/YuktiKit/blob/main/wiki/iOS-Roadmap.md)**  
+- ***[iOS Roadmap](https://github.com/codecat15/YuktiKit/blob/main/wiki/iOS-Roadmap.md)***
   A structured path for iOS developers to grow from basics to advanced topics and help them crack interviews.
 
 - **[Developer Quality Guide](https://github.com/codecat15/YuktiKit/blob/main/wiki/Developer-Quality-Guide.md)**
