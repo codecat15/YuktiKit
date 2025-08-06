@@ -1,6 +1,6 @@
 # 📁 iOS Architecture Decisions/Boundaries & Folder Structure
 
-This documentation contains architecture boundaries and sample folder structure. The architecture boundaries can be used with any architecture whatsoever the core principals are always going to remain the same.
+This documentation contains architecture boundaries and sample folder structure. The architecture boundaries can be used with any architecture whatsoever the core principles are always going to remain the same.
 
 The folder structure however is pure subjective to your situation and application so take your best pragmatic guess on what should go where.
 
@@ -61,7 +61,7 @@ You're not just a developer anymore. You're now:
 
 ---
 
-## 📁 Sample Folder structure
+## 📁 Sample Folder Structure
 
 Different architectures may structure things differently, but when it comes to maintainability, the end goal should always be cohesion. Keeping related components close together improves navigability and reduces friction when scaling or debugging.
 
@@ -148,7 +148,7 @@ App/
 
 - This **breaks abstraction**, causes **tight coupling**, and makes refactoring painful when the backend or UI changes.
 
-- We are breking down the model into categories so that we know which model belongs where.
+- We are breaking down the model into categories so that we know which model belongs where.
 
 - Data models should be `structs` unless there's a need to use class `then` use class.
 
@@ -555,7 +555,7 @@ final class OrderViewModel {
 }
 ```
 
-### Note: `OrderRepository` and `UserRepository` should be protocols to adhere to Dependency inversion principal of SOLID.
+### Note: `OrderRepository` and `UserRepository` should be protocols to adhere to Dependency inversion principle of SOLID.
 
 ### 💡 Why Isolation Matters
 
@@ -1120,7 +1120,7 @@ func convertToJSON(_ obj: Any) -> String? { ... }
 func roundUp(_ value: Double) -> Int { ... }
 ```
 
-> Congratulations, you’ve just created a **dumping ground** OR **GOD Utilites.swift**.
+> Congratulations, you’ve just created a **dumping ground** OR **GOD Utilities.swift**.
 
 - Impossible to test
 - No discoverability
