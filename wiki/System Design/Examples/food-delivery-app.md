@@ -2,7 +2,7 @@
 
 # Goal: A practical, review-ready design for browsing restaurants, selecting items, building a cart, and placing an order.
 
-## Refer the [system design playbook](../system-design-playbook.md) if you have a question on any of the points. We are going to start from the section **3.1 of the playbook**
+## Refer the [system design playbook](../system-design-playbook.md) if you have a question on any of the points. We are going to start from the section [**3.1 of the playbook**](../system-design-playbook.md#3-module-design-template)
 
 ---
 
